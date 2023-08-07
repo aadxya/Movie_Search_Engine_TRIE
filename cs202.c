@@ -211,11 +211,12 @@ int main()
     char desc[1000]; //stores description
     int i = 0;       //index of name;
     int stat = 1;    //variable to check if to store in trie or not, 1 if storing, 0 if not storing
-    while ((ch = fgetc(data)) != EOF)
+    while ((ch = fgetc(data)) != EOF) //EOF = End Of File
     {
 
         if (stat == 1)
         {
+            //base case - reached the end
             if (ch == '#')
             {
                 stat = 2;       //dont store further
@@ -232,14 +233,13 @@ int main()
         {
             if (ch == '#')
             {
-
                 stat = 3; //start storing details
                 rate[i] = '\0';
                 i = 0;
             }
             else
             {
-                rate[i] = ch;
+                rate[i] = ch;  //keep on storing the rate
                 i++;
             }
         }
@@ -249,10 +249,10 @@ int main()
             {
 
                 stat = 4; //stop storing
-                desc[i] = '\0';
+                desc[i] = '\0'; //end the desc 
                 i = 0;
 
-                Trieinsert(r, name, rate, desc);
+                Trieinsert(r, name, rate, desc);  //insert all the values in trie
             }
             else
             {
@@ -288,16 +288,16 @@ int main()
         ///////////
         mainmenu();
         scanf(" %c", &inp);
-        system("cls");
+        system("cls"); //clear console screen
         switch (inp)
         {
-        case 'S':
+        case 'S':  //user wishes to search
         {
 
             searchmenu();
             i = 0;
             scanf(" %c", &ch);
-            while (ch != '*')
+            while (ch != '*') //movie name ends with a *
             {
                 name[i] = ch;
                 i++;
@@ -350,7 +350,7 @@ int main()
                 }
             }
             printf("\n\n");
-            getch();
+            getch(); 
             break;
         }
         case 'Q':
